@@ -1,13 +1,16 @@
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key});
+
+  final Future<FirebaseApp> _initialization = Firebase.initializeApp();
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +22,20 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.red),
         ),
-        home: MyHomePage(),
+        home: FutureBuilder(
+          future: _initialization,
+          builder: (context, snapshot) {
+            if (snapshot.hasError) {
+              print("Error");
+              print(snapshot.error.toString());
+            }
+            if (snapshot.connectionState == ConnectionState.done) {
+              print("No Error");
+              return MyHomePage();
+            }
+            return CircularProgressIndicator();
+          },
+        ),
       ),
     );
   }
