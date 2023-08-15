@@ -132,7 +132,7 @@ class FavoritesPage extends StatelessWidget {
 
     if (appState.favorites.isEmpty) {
       return Center(
-        child: Text('Chamar meu braço.'),
+        child: Text('Chamar meu Johnson.'),
       );
     }
 
