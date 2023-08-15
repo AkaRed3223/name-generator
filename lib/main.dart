@@ -131,10 +131,12 @@ class FavoritesPage extends StatelessWidget {
     var appState = context.watch<MyAppState>();
 
     if (appState.favorites.isEmpty) {
+      print('Logging testing: No favorites');
       return Center(
-        child: Text('Chamar meu Johnson.'),
+        child: Text('No favorites yet.'),
       );
     }
+    print('Logging testing: Yes favorites');
 
     return ListView(
       children: [
