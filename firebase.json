@@ -1,10 +1,13 @@
 {
   "hosting": {
-    "public": "build/web",
+    "source": "./build/web",
     "ignore": [
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
-    ]
+    ],
+    "frameworksBackend": {
+      "region": "us-central1"
+    }
   }
 }
